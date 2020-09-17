@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mon Application Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>VueMart</h1>
+    
+        <h2>Panier</h2>
+        <ul>
+        <li>Pommes: {{ costOfApples }}€</li>
+        <li>Bananes: {{ costOfBananas }}€</li>
+        <li>Noix de coco: {{ costOfCoconuts }}€</li>
+        </ul>
+        <p>Total: {{ totalAmount }}€</li>
+    
+        <h2>Horaires d'ouverture</h2>
+        <p>Dimanche: 10h - 16h</p>
+        <p>Du lundi au vendredi : 09h - 17h</p>
+        <p>Samedi : 09h30 - 18h00</p>
+    </div>
+  
+    
+</body>
+
+ <!-- Contenu temporairement caché pour cet exemple -->
+ <script>
+     function bet(Pseudo, score, MVP){
+         this.pseudo = Pseudo;
+         this.score = score;
+         this.MVP = MVP;
+     }
+
+    
+
+    const app = new Vue({
+    el: '#app',
+    data: {
+       
+    },
+    computed: {
+        totalAmount() {
+        return this.costOfApples + this.costOfBananas + this.costOfCoconuts
+        }
+    }
+    })
+</script>
+
+
+</html>
