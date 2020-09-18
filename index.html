@@ -3,50 +3,68 @@
 <head>
     <title>Mon Application Vue.js</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <div id="app">
-        <h1>VueMart</h1>
-    
-        <h2>Panier</h2>
-        <ul>
-        <li>Pommes: {{ costOfApples }}€</li>
-        <li>Bananes: {{ costOfBananas }}€</li>
-        <li>Noix de coco: {{ costOfCoconuts }}€</li>
-        </ul>
-        <p>Total: {{ totalAmount }}€</li>
-    
-        <h2>Horaires d'ouverture</h2>
-        <p>Dimanche: 10h - 16h</p>
-        <p>Du lundi au vendredi : 09h - 17h</p>
-        <p>Samedi : 09h30 - 18h00</p>
+
+    <header class="navbar">
+        <section class="navbar-section">
+            <h1>Krosinamax</h1>
+        </section>
+    </header>
+
+    <div class="container vertical-center">
+        <div id="app">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Pseudo</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">MVP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(bet, index) in bets" :key="bet.pseudo">
+                        <td scope="col" >{{index + 1}}</td>
+                        <td scope="col" >{{bet.pseudo}}</td>
+                        <td scope="col" >{{bet.score}}</td>
+                        <td scope="col" >{{bet.MVP}}</td>
+                    </tr>
+            </table>
+
+            <p>Nombre total de pari(s): {{ bets.length }} </p>
+            <p id="actif">Actif</p>
+        </div>
     </div>
+    
   
     
 </body>
 
  <!-- Contenu temporairement caché pour cet exemple -->
  <script>
-     function bet(Pseudo, score, MVP){
-         this.pseudo = Pseudo;
-         this.score = score;
-         this.MVP = MVP;
-     }
-
-    
+     
 
     const app = new Vue({
     el: '#app',
     data: {
-       
+        bets: [
+            {pseudo: "ZartaK32", score: "1-0", MVP: "Keusno"},
+            {pseudo: "Krose", score: "2-0", MVP: "Maybe"},
+            {pseudo: "KHarden", score: "1-1", MVP: "Namkyo"},
+            {pseudo: "Namkyo", score: "3-1", MVP: "Clarence"},
+            {pseudo: "Keusno", score: "3-0", MVP: "Keusno"}
+        ]
+      
     },
-    computed: {
-        totalAmount() {
-        return this.costOfApples + this.costOfBananas + this.costOfCoconuts
-        }
-    }
+   
     })
 </script>
+
+
 
 
 </html>
