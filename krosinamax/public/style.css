@@ -31,6 +31,7 @@ body{
     flex-wrap: wrap;
     justify-content: space-between;
     color: rgb(228, 231, 15);
+    top: 0;
   }
   .navbar section {
     width: 600px;
