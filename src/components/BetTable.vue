@@ -10,7 +10,7 @@
       </thead>
       <tbody>
           <tr v-for="(bet, index) in Bets" :key="bet.pseudo">
-              <td scope="col" >{{index}}</td>
+              <td scope="col" >{{index+1}}</td>
               <td scope="col" >{{bet.pseudo}}</td>
               <td scope="col" >{{bet.score}}</td>
               <td scope="col" >{{bet.MVP}}</td>

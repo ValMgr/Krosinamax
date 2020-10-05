@@ -14,6 +14,15 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    addBet(state, bet){
+      state.bets.push(bet);
+    },
+    cleanBet(state){
+      while(state.bets.length > 0){
+        console.log("Bet cleaned !")
+        state.bets.pop(0)
+      }
+    }
   },
   actions: {
   },
