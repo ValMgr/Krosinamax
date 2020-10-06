@@ -34,16 +34,22 @@ const client = new tmi.client(config);
 client.connect();
 
 client.on('connected', () => {
-    client.action(channel, 'Krosinamax now up !');
+    //client.action(channel, 'Krosinamax now up !');
 });
 
 client.on('chat', (channels, user, message) => {
-    var command = message.slice(0, 4)
+    var command = message.split(" ")[0]
     
     if(command == "!bet"){
-      var score = message.slice(5, 8);
-      var MVP = message.slice(9)
-      console.log(score + ' ' + MVP)
+        if(message.split("")[2] == '-'){
+            //
+        }
+        else{
+            var score = message.split(" ")[1];
+            var MVP = message.split(" ")[2]
+        }
+
+      console.log("Score: " + score + '; MVP: ' + MVP)
     }
       
 })
