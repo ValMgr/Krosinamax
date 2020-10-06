@@ -25,7 +25,7 @@ exports.endMatch = (score, MVP) => {
             gain += 2500;
         }
 
-        console.log(each.pseudo + " gain " + gain);
+        //console.log(each.pseudo + " gain " + gain);
         if(gain > 0){
             reward[each.pseudo] = gain
         }

@@ -11,32 +11,39 @@ new Vue({
 }).$mount('#app')
 
 
-// const tmi = require('tmi.js');
-// const channel = "ZartaK32_Dev";
+const tmi = require('tmi.js');
+const channel = "ZartaK32_Dev";
 
-// const config = {
-//     options: {
-//         debug: true,
-//     },
-//     connection: {
-//         cluster: 'aws',
-//         reconnect: true,
-//     },
-//     identity: {
-//         username: 'Krosinamax',
-//         password: 'oauth:nu8yo5w38fcj06lfthbzc2q9c8u19e',
-//     },
-//     channels: [channel],
-// };
+const config = {
+    options: {
+        debug: true,
+    },
+    connection: {
+        cluster: 'aws',
+        reconnect: true,
+    },
+    identity: {
+        username: 'Krosinamax',
+        password: 'oauth:nu8yo5w38fcj06lfthbzc2q9c8u19e',
+    },
+    channels: [channel],
+};
 
-// const client = new tmi.client(config);
+const client = new tmi.client(config);
 
-// client.connect();
+client.connect();
 
-// client.on('connected', () => {
-//     client.action(channel, 'Krosinamax now up !');
-// });
+client.on('connected', () => {
+    client.action(channel, 'Krosinamax now up !');
+});
 
-// client.on('chat', (channels, user, message) => {
-//       client.action(channel, message);
-// })
+client.on('chat', (channels, user, message) => {
+    var command = message.slice(0, 4)
+    
+    if(command == "!bet"){
+      var score = message.slice(5, 8);
+      var MVP = message.slice(9)
+      console.log(score + ' ' + MVP)
+    }
+      
+})
