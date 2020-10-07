@@ -67,7 +67,7 @@ export default {
           }
       },
       newMatch: function(){
-          betManager.StartCountdown(300);
+          betManager.StartCountdown(180);
           document.getElementById('endBtn').style.display = 'block';
           document.getElementById('newBtn').style.display = 'none';
 
@@ -112,7 +112,7 @@ hr{
   color: red;
   visibility: hidden;
 }
-#newBtn{
+#endBtn{
   display: none;
 }
 </style>
