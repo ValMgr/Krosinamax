@@ -26,7 +26,7 @@ const config = {
     },
     identity: {
         username: 'Krosinamax',
-        password: 'oauth:oauth:sauyug0zb4f1xelxksl9aila1jqwmj',
+        password: 'oauth:sauyug0zb4f1xelxksl9aila1jqwmj',
     },
     channels: [channel],
 };
