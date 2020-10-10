@@ -14,7 +14,7 @@ new Vue({
 
 
 const tmi = require('tmi.js');
-const channel = "ZartaK32_Dev";
+const channel = "Krose_Officiel";
 
 const config = {
     options: {
@@ -26,7 +26,7 @@ const config = {
     },
     identity: {
         username: 'Krosinamax',
-        password: 'oauth:nu8yo5w38fcj06lfthbzc2q9c8u19e',
+        password: 'oauth:oauth:sauyug0zb4f1xelxksl9aila1jqwmj',
     },
     channels: [channel],
 };
@@ -36,7 +36,7 @@ const client = new tmi.client(config);
 client.connect();
 
 client.on('connected', () => {
-    //client.action(channel, 'Krosinamax now up !');
+    client.action(channel, 'Krosinamax started !');
 });
 
 client.on('chat', (channels, user, message) => {
@@ -65,7 +65,7 @@ client.on('chat', (channels, user, message) => {
 })
 
 exports.sendReward = (reward) => {
-    console.log(reward)
+    
     for (const pseudo in reward) {
        client.action(channel, `!addpoints ${pseudo} ${reward[pseudo]}`)
     }
