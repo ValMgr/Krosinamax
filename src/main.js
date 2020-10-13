@@ -63,27 +63,41 @@ client.on('chat', (channels, user, message) => {
       
     if(!betManager.isEnd){
         store.commit("addBet", newBet)
-        sendMessage(`@${pseudo}, votre pari à bien été pris en compte !`)
+        sendAction(`@${pseudo}, votre pari à bien été pris en compte !`)
     }
     else{
         console.log('Bets is closed !')
-        sendMessage(`@${pseudo}, les paris sont actuellement fermés !`)
+        sendAction(`@${pseudo}, les paris sont actuellement fermés !`)
     }
 
     }
 })
 
-exports.sendReward = (reward) => {
-    for (const pseudo in reward) {
+function sendReward(reward){
+    if(Object.keys(reward).length>0){
+        let pseudo = Object.keys(reward)[0]
+        sendAction(`!addpoints ${pseudo} ${reward[pseudo]}`)
+        delete reward[pseudo]
         setTimeout(() => {
-            sendMessage(`!addpoints ${pseudo} ${reward[pseudo]}`)
-        }, 3000);
+            sendReward(reward)
+        }, 1000);
     }
-    
+}
+
+function sendAction(msg){
+    client.action(channel, msg)
 }
 
 function sendMessage(msg){
-    client.action(channel, msg)
+    client.say(channel, msg)
 }
+
+exports.sendReward = (reward) => {
+    sendReward(reward);
+}
+
+exports.sendMessage = (msg) => {
+    sendMessage(msg)
+};
 
 export default exports

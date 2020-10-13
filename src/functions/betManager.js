@@ -1,5 +1,7 @@
 import store from '../store'
 import client from '../main.js'
+import {endBets} from '../App.vue'
+
 
 let exports = {}
 var isEnd = true;
@@ -51,6 +53,7 @@ exports.endMatch = (score, MVP) => {
 exports.StopCountdown = () => {
     isEnd = true;
     exports.isEnd = isEnd;
+    endBets();
 }
 
 

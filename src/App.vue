@@ -17,7 +17,7 @@
         <br>
         <div id="betState"><span id="StateIndicator"></span><p id="countdown">Paris fermé</p></div>
         <button id="endMatchBtn" class="btn btn-danger" v-on:click="clearBets()">Fin de match</button>
-        <button id="endBetBtn" class="btn btn-success  " v-on:click="endBets()">Fermé les paris</button>
+        <button id="endBetBtn" class="btn btn-success  " v-on:click="StopCountdown()">Fermé les paris</button>
         <button id="newBtn" class="btn btn-primary" v-on:click="newMatch()">Nouveau match</button>
 
 
@@ -31,6 +31,7 @@ import { mapState } from 'vuex';
 import { mapMutations } from 'vuex';
 import store from './store'
 import betManager from './functions/betManager.js'
+import client from './main.js'
 
 export default {
   name: 'App',
@@ -71,15 +72,22 @@ export default {
           betManager.StartCountdown(180);
           document.getElementById('endBetBtn').style.display = 'block';
           document.getElementById('newBtn').style.display = 'none';
-
+          client.sendMessage("Le match va commencer ! Faites vos paris avec la command !bet")
+          client.sendMessage("Syntax: !bet 0-0 Pseudo")
       },
-      endBets: () => {
-          betManager.StopCountdown();
-          document.getElementById('endMatchBtn').style.display = 'block';
-          document.getElementById('endBetBtn').style.display = 'none';
+      StopCountdown: () => {
+        betManager.StopCountdown();
       }
   } 
 }
+
+ function endBets(){
+          document.getElementById('endMatchBtn').style.display = 'block';
+          document.getElementById('endBetBtn').style.display = 'none';
+          client.sendMessage("Les paris sont désormais fermés !")
+  }
+
+  export {endBets}
 
 </script>
 

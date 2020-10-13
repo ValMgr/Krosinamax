@@ -5,13 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    bets: [
-      {pseudo: "oui", score: "1-0", MVP: "Keusno"},
-      {pseudo: "non", score: "2-0", MVP: "Keusno"},
-      {pseudo: "aya", score: "1-1", MVP: "Namkyo"},
-      {pseudo: "ghjk", score: "3-1", MVP: "Clarence"},
-      {pseudo: "samerelapute", score: "3-0", MVP: "Keusno"},
-    ]
+    bets: []
   },
   mutations: {
     addBet(state, bet){
