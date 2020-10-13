@@ -39,17 +39,29 @@ client.on('connected', () => {
 
 client.on('chat', (channels, user, message) => {
     var command = message.split(" ")[0]
-    
+    var score;
+    var MVP;
+
     if(command == "!bet"){
-        if(message.split("")[2] == '-'){
-            //
+        if(message.split(" ")[2] == '-'){
+            score = message.split(" ")[1] + '-' + message.split(" ")[3];
+            MVP = message.split(" ")[4]
         }
         else{
-            var score = message.split(" ")[1];
-            var MVP = message.split(" ")[2]
+            score = message.split(" ")[1];
+            MVP = message.split(" ")[2]
         }
 
-      console.log("Score: " + score + '; MVP: ' + MVP)
+      //console.log(user.username)
+      //console.log("Score: " + score + '; MVP: ' + MVP);
+      
+      let newBet = {
+          pseudo: user.username,
+          score: score,
+          MVP: MVP,
+      }
+
+      store.commit('addBet', newBet)
     }
       
 })
