@@ -16,7 +16,8 @@
         </form>
         <br>
         <div id="betState"><span id="StateIndicator"></span><p id="countdown">Paris fermé</p></div>
-        <button id="endBtn" class="btn btn-success" v-on:click="clearBets()">Fin de match</button>
+        <button id="endMatchBtn" class="btn btn-danger" v-on:click="clearBets()">Fin de match</button>
+        <button id="endBetBtn" class="btn btn-success  " v-on:click="endBets()">Fermé les paris</button>
         <button id="newBtn" class="btn btn-primary" v-on:click="newMatch()">Nouveau match</button>
 
 
@@ -46,7 +47,7 @@ export default {
         clean: 'cleanBet',
         addBet: 'addBet',
       }),
-      clearBets: function(){
+      clearBets: () => {
         let MVP = document.getElementById('MVPInput').value
           if(MVP == ""){
             document.getElementById('error').style.visibility = 'visible';
@@ -54,7 +55,7 @@ export default {
           }
           else{
             document.getElementById('error').style.visibility = 'hidden';
-            document.getElementById('endBtn').style.display = 'none';
+            document.getElementById('endMatchBtn').style.display = 'none';
             document.getElementById('newBtn').style.display = 'block';
 
             let score = document.getElementById('score1').value + "-" + document.getElementById('score2').value
@@ -66,11 +67,16 @@ export default {
             betManager.endMatch(score, MVP);
           }
       },
-      newMatch: function(){
-          betManager.StartCountdown(300);
-          document.getElementById('endBtn').style.display = 'block';
+      newMatch: () => {
+          betManager.StartCountdown(180);
+          document.getElementById('endBetBtn').style.display = 'block';
           document.getElementById('newBtn').style.display = 'none';
 
+      },
+      endBets: () => {
+          betManager.StopCountdown();
+          document.getElementById('endMatchBtn').style.display = 'block';
+          document.getElementById('endBetBtn').style.display = 'none';
       }
   } 
 }
@@ -112,7 +118,7 @@ hr{
   color: red;
   visibility: hidden;
 }
-#newBtn{
+#endMatchBtn, #endBetBtn{
   display: none;
 }
 </style>

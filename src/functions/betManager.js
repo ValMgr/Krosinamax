@@ -1,6 +1,8 @@
 import store from '../store'
+import client from '../main.js'
 
 let exports = {}
+var isEnd = true;
 
 exports.endMatch = (score, MVP) => {
 
@@ -14,7 +16,7 @@ exports.endMatch = (score, MVP) => {
         if(each.score == score){
             getScore = true;
         }
-        if(each.MVP == MVP){
+        if(each.MVP.toLowerCase() == MVP.toLowerCase()){
             getMVP = true
         }
 
@@ -31,51 +33,55 @@ exports.endMatch = (score, MVP) => {
         }
     }
 
-    console.log(reward)
-    sendReward(reward)
+    isEnd = true;
+    exports.isEnd = isEnd;
+    client.sendReward(reward)
     store.commit("cleanBet")
 }
 
-function sendReward(reward){
-    // Twicth component to send IRC message
+// exports.sendBet = (bet) => {
+//     if(isEnd){
+//         console.log("Les paris sont fermés !")
+//     }
+//     else if(!isEnd){
+//         store.commit("addBet", bet);
+//     }
+// }
+
+exports.StopCountdown = () => {
+    isEnd = true;
+    exports.isEnd = isEnd;
 }
 
+
 function countdown(timer){
-    if(timer > 0){
-        timer--;
-        document.getElementById('countdown').innerHTML = Math.floor(timer / 60) + ':' + (timer % 60)
-        // console.log(Math.floor(timer / 60) + ':' + (timer % 60))
-        setTimeout(() => {
-            countdown(timer)
-        }, 1000);
+    if(!isEnd){
+        if(timer > 0){
+            timer--;
+            document.getElementById('countdown').innerHTML = Math.floor(timer / 60) + ':' + (timer % 60)
+            setTimeout(() => {
+                countdown(timer)
+            }, 1000);
+        }
+        else if(timer == 0){
+            isEnd = true;
+            exports.isEnd = isEnd;
+            document.getElementById('countdown').innerHTML = "Paris fermé";
+            document.getElementById('StateIndicator').style.backgroundColor = "#FF0000"
+        }
     }
-    else if(timer == 0){
+    else{
         document.getElementById('countdown').innerHTML = "Paris fermé";
         document.getElementById('StateIndicator').style.backgroundColor = "#FF0000"
-    }
+    } 
 }
 
 exports.StartCountdown = (timer) => {
+    isEnd = false
+    exports.isEnd = isEnd;
     document.getElementById('StateIndicator').style.backgroundColor = "#00FF00"
     countdown(timer)
 }
 
+exports.isEnd = isEnd;
 export default exports
-
-// function closeBet(){
-//     isOpen = false;
-
-//let isOpen = false;
-
-
-// }
-
-// var newBet = {
-//     pseudo: "ZartaK32",
-//     score: "1-0",
-//     MVP: "ZartaK32"
-// }
-
-// store.commit('addBet', newBet)
-
-// store.commit('cleanBet')
