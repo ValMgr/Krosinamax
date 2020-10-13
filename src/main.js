@@ -36,7 +36,7 @@ const client = new tmi.client(config);
 client.connect();
 
 client.on('connected', () => {
-    client.action(channel, 'Krosinamax started !');
+    //client.action(channel, 'Ping');
 });
 
 client.on('chat', (channels, user, message) => {
@@ -54,21 +54,36 @@ client.on('chat', (channels, user, message) => {
             score = message.split(" ")[1];
             MVP = message.split(" ")[2]
         }
-      //console.log("Pseudo: " + pseudo + "; Score: " + score + '; MVP: ' + MVP)
+      console.log("Pseudo: " + pseudo + "; Score: " + score + '; MVP: ' + MVP)
       var newBet = {
           pseudo: pseudo,
           score: score,
           MVP: MVP,
       }
-      betManager.sendBet(newBet);
+      
+    if(!betManager.isEnd){
+        store.commit("addBet", newBet)
+        sendMessage(`@${pseudo}, votre pari à bien été pris en compte !`)
+    }
+    else{
+        console.log('Bets is closed !')
+        sendMessage(`@${pseudo}, les paris sont actuellement fermés !`)
+    }
+
     }
 })
 
 exports.sendReward = (reward) => {
-    
     for (const pseudo in reward) {
-       client.action(channel, `!addpoints ${pseudo} ${reward[pseudo]}`)
+        setTimeout(() => {
+            sendMessage(`!addpoints ${pseudo} ${reward[pseudo]}`)
+        }, 3000);
     }
+    
+}
+
+function sendMessage(msg){
+    client.action(channel, msg)
 }
 
 export default exports

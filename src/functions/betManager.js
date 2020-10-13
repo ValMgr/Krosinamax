@@ -34,17 +34,23 @@ exports.endMatch = (score, MVP) => {
     }
 
     isEnd = true;
+    exports.isEnd = isEnd;
     client.sendReward(reward)
     store.commit("cleanBet")
 }
 
-exports.sendBet = (bet) => {
-    if(isEnd){
-        console.log("Les paris sont fermés !")
-    }
-    else if(!isEnd){
-        store.commit("addBet", bet);
-    }
+// exports.sendBet = (bet) => {
+//     if(isEnd){
+//         console.log("Les paris sont fermés !")
+//     }
+//     else if(!isEnd){
+//         store.commit("addBet", bet);
+//     }
+// }
+
+exports.StopCountdown = () => {
+    isEnd = true;
+    exports.isEnd = isEnd;
 }
 
 
@@ -59,6 +65,7 @@ function countdown(timer){
         }
         else if(timer == 0){
             isEnd = true;
+            exports.isEnd = isEnd;
             document.getElementById('countdown').innerHTML = "Paris fermé";
             document.getElementById('StateIndicator').style.backgroundColor = "#FF0000"
         }
@@ -71,7 +78,10 @@ function countdown(timer){
 
 exports.StartCountdown = (timer) => {
     isEnd = false
+    exports.isEnd = isEnd;
     document.getElementById('StateIndicator').style.backgroundColor = "#00FF00"
     countdown(timer)
 }
+
+exports.isEnd = isEnd;
 export default exports
