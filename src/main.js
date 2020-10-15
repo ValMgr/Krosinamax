@@ -54,7 +54,7 @@ client.on('chat', (channels, user, message) => {
             score = message.split(" ")[1];
             MVP = message.split(" ")[2]
         }
-      console.log("Pseudo: " + pseudo + "; Score: " + score + '; MVP: ' + MVP)
+      //console.log("Pseudo: " + pseudo + "; Score: " + score + '; MVP: ' + MVP)
       var newBet = {
           pseudo: pseudo,
           score: score,
@@ -66,7 +66,7 @@ client.on('chat', (channels, user, message) => {
         sendAction(`@${pseudo}, votre pari à bien été pris en compte !`)
     }
     else{
-        console.log('Bets is closed !')
+        //console.log('Bets is closed !')
         sendAction(`@${pseudo}, les paris sont actuellement fermés !`)
     }
 

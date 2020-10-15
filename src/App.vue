@@ -52,7 +52,7 @@ export default {
         let MVP = document.getElementById('MVPInput').value
           if(MVP == ""){
             document.getElementById('error').style.visibility = 'visible';
-            console.log("MVP cannot be unset");
+            //console.log("MVP cannot be unset");
           }
           else{
             document.getElementById('error').style.visibility = 'hidden';
@@ -60,8 +60,8 @@ export default {
             document.getElementById('newBtn').style.display = 'block';
 
             let score = document.getElementById('score1').value + "-" + document.getElementById('score2').value
-            console.log("Score: " + score)
-            console.log("MVP: " + MVP)
+            //console.log("Score: " + score)
+            //console.log("MVP: " + MVP)
             document.getElementById('MVPInput').value = ""
             document.getElementsByClassName('scoreInput')[0].value = '0'
             document.getElementsByClassName('scoreInput')[1].value = '0'
