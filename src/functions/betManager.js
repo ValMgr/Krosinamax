@@ -41,14 +41,6 @@ exports.endMatch = (score, MVP) => {
     store.commit("cleanBet")
 }
 
-// exports.sendBet = (bet) => {
-//     if(isEnd){
-//         console.log("Les paris sont fermés !")
-//     }
-//     else if(!isEnd){
-//         store.commit("addBet", bet);
-//     }
-// }
 
 exports.StopCountdown = () => {
     isEnd = true;
@@ -69,6 +61,7 @@ function countdown(timer){
         else if(timer == 0){
             isEnd = true;
             exports.isEnd = isEnd;
+            endBets();
             document.getElementById('countdown').innerHTML = "Paris fermé";
             document.getElementById('StateIndicator').style.backgroundColor = "#FF0000"
         }

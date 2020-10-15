@@ -14,7 +14,7 @@ new Vue({
 
 
 const tmi = require('tmi.js');
-const channel = "Krose_Officiel";
+const channel = "ZartaK32";
 
 const config = {
     options: {
@@ -46,7 +46,7 @@ client.on('chat', (channels, user, message) => {
         var MVP;
         var pseudo = user.username
 
-        if(message.split("")[2] == '-'){
+        if(message.split(" ")[2] == '-'){
             score = message.split(" ")[1] + "-" + message.split(" ")[3];
             MVP = message.split(" ")[4];
         }
@@ -54,7 +54,7 @@ client.on('chat', (channels, user, message) => {
             score = message.split(" ")[1];
             MVP = message.split(" ")[2]
         }
-      //console.log("Pseudo: " + pseudo + "; Score: " + score + '; MVP: ' + MVP)
+      console.log("Pseudo: " + pseudo + "; Score: " + score + '; MVP: ' + MVP)
       var newBet = {
           pseudo: pseudo,
           score: score,
