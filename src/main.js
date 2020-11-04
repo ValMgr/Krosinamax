@@ -14,7 +14,7 @@ new Vue({
 
 
 const tmi = require('tmi.js');
-const channel = "ZartaK32";
+const channel = "Krose_Officiel";
 
 const config = {
     options: {

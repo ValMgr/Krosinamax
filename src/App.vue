@@ -69,7 +69,7 @@ export default {
           }
       },
       newMatch: () => {
-          betManager.StartCountdown(10);
+          betManager.StartCountdown(180);
           document.getElementById('endBetBtn').style.display = 'block';
           document.getElementById('newBtn').style.display = 'none';
           client.sendMessage("Le match va commencer ! Faites vos paris avec la command !bet")
